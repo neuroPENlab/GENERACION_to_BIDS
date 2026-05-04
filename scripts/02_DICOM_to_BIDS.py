@@ -305,7 +305,7 @@ source activate generacion-to-bids
 python {os.path.abspath(__file__)} cleanup "{temp_bids_dir}" "{heuristic_fn}"
 """
         result = subprocess.run(
-            ["sbatch", f"--dependency=afterok:{job_id}"],
+            ["sbatch", f"--dependency=afterany:{job_id}"],
             input=cleanup_script,
             text=True,
             capture_output=True
