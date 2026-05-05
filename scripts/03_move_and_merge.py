@@ -110,7 +110,7 @@ df_participants_src = pd.read_csv(os.path.join(local_bids_path,"participants.tsv
 
 if os.path.exists(os.path.join(destination_bids_path,"participants.tsv")) == True:   
     df_participants_des = pd.read_csv(os.path.join(destination_bids_path,"participants.tsv"), sep='\t')
-    new_participants_des = pd.concat((df_participants_des, df_participants_src)).groupby('participant_id').first().reset_index() 
+    new_participants_des = pd.concat((df_participants_des, df_participants_src)).groupby('participant_id').first().reset_index().sort_values(by=["participant_id"])
     new_participants_des.to_csv(os.path.join(destination_bids_path,"participants.tsv"), sep="\t",
                       header=True, index=False, na_rep="n/a")
     if df_participants_des.equals(new_participants_des) == False:
